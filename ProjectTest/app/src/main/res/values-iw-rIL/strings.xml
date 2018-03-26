@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovLab</string>
+    <string name="movie_s_name">שם הסרט</string>
+    <string name="movie_s_description">תיאור הסרט</string>
+    <string name="movie_s_image_url">קישור לתמונה</string>
+    <string name="show">הצג</string>
+    <string name="ok">אוקיי</string>
+    <string name="cancel">ביטול</string>
+    <string name="movieCreated">סרט נוצר</string>
+    <string name="edit">ערוך</string>
+    <string name="delete">מחק</string>
+    <string name="What_Action">בחר פעולה</string>
+    <string name="go">התחל</string>
+    <string name="search">חיפוש</string>
+    <string name="add_by_internet">הוסף לפי אינטרנט</string>
+    <string name="add_by_yourself">הוסף ידני</string>
+    <string name="exit">יציאה</string>
+    <string name="delete_all">מחק הכל</string>
+    <string name="gotopage">לך לעמוד</string>
+    <string name="moviepage">עמוד הסרט</string>
+    <string name="share">שתף</string>
+    <string name="shares">שתף</string>
+    <string name="addmovie">הוסף סרט</string>
+    <string name="setting">הגדרות</string>
+    <string name="random_movie">סרט רנדומלי</string>
+    <string name="toast">שם הסרט חיוני לייצירת סרט</string>
+    <string name="movie_is_list_empty">רשימת הסרטים ריקה</string>
+    <string name="watch">האם ראית את הסרט?</string>
+</resources>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.henshoefgmail.projecttest.MoviePage">
+<ScrollView
+    android:background="@raw/main"
+    android:backgroundTint="@color/colorPrimary"
+    android:backgroundTintMode="screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/fullMovie"
+        android:background="@drawable/layoutstyle"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <LinearLayout
+            android:id="@+id/l"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/description"
+                android:textColor="@color/white"
+                android:layout_marginStart="170dp"
+                android:layout_marginEnd="5dp"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"/>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:background="@color/halfWhite"
+                android:layout_marginEnd="10dp"
+                android:layout_width="150dp"
+                android:layout_height="230dp" />
+
+        </LinearLayout>
+       <LinearLayout
+           android:layout_margin="15dp"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <LinearLayout
+               android:gravity="center"
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+           <TextView
+               android:visibility="gone"
+               android:id="@+id/vote_average"
+               android:textColor="@color/white"
+               android:layout_marginBottom="10dp"
+               android:textSize="24sp"
+               android:layout_width="150dp"
+               android:layout_height="wrap_content" />
+
+               <RatingBar
+                   android:visibility="visible"
+                   android:id="@+id/MyRating"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:isIndicator="true"
+                   android:rating="3.7"
+                   android:stepSize="0.1"
+                   />
+           </LinearLayout>
+           <TextView
+               android:id="@+id/release_date"
+               android:textColor="@color/white"
+               android:layout_marginBottom="10dp"
+               android:textSize="24sp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:id="@+id/budget"
+               android:textColor="@color/white"
+               android:layout_marginBottom="10dp"
+               android:textSize="24sp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:id="@+id/runtime"
+               android:textColor="@color/white"
+               android:layout_marginBottom="10dp"
+               android:textSize="24sp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+
+       </LinearLayout>
+        <Button
+            android:textColor="@color/white"
+            android:background="@drawable/buttons"
+            android:text="@string/shares"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="share"/>
+    </LinearLayout>
+</ScrollView>
+</android.support.constraint.ConstraintLayout>
