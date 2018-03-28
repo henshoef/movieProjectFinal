@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar));
         App.setContext(this); //i use this for later use to declare startActivityForResult from another Activity.
         db = new DataBase(this);//start my data base
         layout = (LinearLayout) findViewById(R.id.linearLayoutMain);//the outer layout- so i could use it in addPicture();
@@ -73,15 +75,15 @@ public class MainActivity extends AppCompatActivity {
         final Button goPageButton = new Button(this);
         Button watchButton = new Button(this);
 // resizing the elements
-        resizeLinearLayoutimageInside(movieImage);
-        resizeButton(goPageButton);
-        resizeLinearLayoutinside(innerLayout);
-        resizeTextDes(des);
-        resizeTextDes(hint);
+        linearLayoutImageInsideResize(movieImage);
+        buttonResize(goPageButton);
+        linearLayoutInsideResize(innerLayout);
+        textDesResize(des);
+        textViewWatchNumberResize(hint);
         hint.setText(getString(R.string.watch));
-        resizeLinearLayout(linearLayout);
-        resizeImageView(image);
-        resizeTextView(title);
+        linearLayoutResize(linearLayout);
+        imageViewResize(image);
+        textViewResize(title);
 // tick button and writing in the database
         watchButton.setTag(id);
         setAddWatch(watchButton,watched,watchNumberTextView);
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             innerLayout.addView(goPageButton);
         }
         movieImage.addView(image);
+
         movieImage.addView(watchNumberTextView);
         movieImage.addView(watchButton);
         movieImage.addView(hint);
@@ -137,28 +140,28 @@ public class MainActivity extends AppCompatActivity {
         layout.addView(linearLayout);
     }
 //all the methods that resize each of the view in particular--------------------
-    public void resizeButton(Button sv){
+    public void buttonResize(Button sv){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         sv.setLayoutParams(positionRules);
         positionRules.setMargins(10, 10, 10, 10);
     }
 
-    public void resizeLinearLayoutimageInside(LinearLayout layoutImage){
+    public void linearLayoutImageInsideResize(LinearLayout layoutImage){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutImage.setLayoutParams(positionRules);
         layoutImage.setGravity(Gravity.CENTER);
         layoutImage.setOrientation(LinearLayout.VERTICAL);
     }
 
-    public void resizeLinearLayoutinside(LinearLayout innerLayout){
+    public void linearLayoutInsideResize(LinearLayout innerLayout){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         innerLayout.setLayoutParams(positionRules);
-        innerLayout.getLayoutParams().height = 950;
+        innerLayout.getLayoutParams().height = 1050;
         positionRules.setMargins(25,0, 0, 5);
         innerLayout.setOrientation(LinearLayout.VERTICAL);
     }
 
-    public void resizeTextDes(TextView des){
+    public void textDesResize(TextView des){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         des.setLayoutParams(positionRules);
         des.setTextColor(Color.WHITE);
@@ -167,16 +170,16 @@ public class MainActivity extends AppCompatActivity {
         des.getLayoutParams().height = 425;
     }
 
-    public void resizeLinearLayout(LinearLayout linearLayout){
+    public void linearLayoutResize(LinearLayout linearLayout){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         linearLayout.setLayoutParams(positionRules);
         positionRules.setMargins(25, 25, 25, 25);
         linearLayout.setLayoutParams(positionRules);
-        linearLayout.getLayoutParams().height = 900;
+        linearLayout.getLayoutParams().height = 1050;
         linearLayout.setBackgroundResource(R.drawable.layoutstyle);
     }
 
-    public void resizeTextView(TextView b){
+    public void textViewResize(TextView b){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         b.setLayoutParams(positionRules);
         b.setTextColor(Color.WHITE);
@@ -184,15 +187,15 @@ public class MainActivity extends AppCompatActivity {
         positionRules.setMargins(15,0, 15, 15);
     }
 
-    public void resizeTextViewWatchNumber(TextView b){
+    public void textViewWatchNumberResize(TextView b){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         b.setLayoutParams(positionRules);
-        b.setTextSize(25);
+        b.setTextSize(15);
         b.setTextColor(Color.WHITE);
 
     }
 
-    public void resizeWatchButton(Button sv){
+    public void watchButtonResize(Button sv){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         sv.setLayoutParams(positionRules);
         sv.getLayoutParams().height = 80;
@@ -200,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         sv.setBackground(getDrawable(R.drawable.ic_check_box_outline_blank_black_24dp));
     }
 
-    public void resizeImageView(ImageView b){
+    public void imageViewResize(ImageView b){
         LinearLayout.LayoutParams positionRules = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         b.setLayoutParams(positionRules);
         positionRules.setMargins(15, 15, 25, 0);
@@ -210,8 +213,8 @@ public class MainActivity extends AppCompatActivity {
 // set the appearance for the tick number and logo
     public void setAddWatch(final Button b ,int watched,final TextView watchNumberTextView){
 
-        resizeTextViewWatchNumber(watchNumberTextView);
-        resizeWatchButton(b);
+        textViewWatchNumberResize(watchNumberTextView);
+        watchButtonResize(b);
         if(watched!=0){
             b.setBackground(getDrawable(R.drawable.ic_check_box_black_24dp));
         }
@@ -293,22 +296,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void random(View v){
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            Intent moviePage = new Intent(this,MoviePage.class);
-            Random rand = new Random();
-            App.setmView(v);
-            int  n = rand.nextInt(68718) + 50;
-            moviePage.putExtra("No",n);
-            moviePage.putExtra("switch",1);
-            startActivity(moviePage);
-        }else{
-            Toast.makeText(this,"there is no internet connection",Toast.LENGTH_SHORT).show();
-        }
-
-    }
 //       edit movie
     public void goToEdit(View v){
         String movieTitle = v.getTag().toString();

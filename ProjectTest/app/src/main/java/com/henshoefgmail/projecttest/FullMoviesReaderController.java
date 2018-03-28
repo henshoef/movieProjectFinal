@@ -7,6 +7,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 
 public class FullMoviesReaderController extends FullMovieController{
     public Activity context;//the context of the current activity that on
@@ -19,12 +21,18 @@ public class FullMoviesReaderController extends FullMovieController{
     }
 
 
-    public void getFullMovie(int No, int num) {
+    public void getFullMovie(int no, int num) {
         //the aSwitch is to check if its a existed movie page on the list or its a random that i ask for
         aSwitch = num;
         //like i writed before the NO(NumberOrder) is the real id in the original api and to send back to get single movie
         HttpRequest httpRequest = new HttpRequest(this);
-        httpRequest.execute("https://api.themoviedb.org/3/movie/" + No + "?api_key=fdbafdad226138d461dcb4c9b2d663f5");
+        Locale locale = Locale.getDefault();
+        String locale2=locale.toString();
+        if(locale2.equals("iw_IL")) {
+            httpRequest.execute("https://api.themoviedb.org/3/movie/" + no + "?api_key=fdbafdad226138d461dcb4c9b2d663f5&language=he");
+        }else{
+            httpRequest.execute("https://api.themoviedb.org/3/movie/" + no + "?api_key=fdbafdad226138d461dcb4c9b2d663f5");
+        }
     }
 
 
@@ -66,7 +74,7 @@ public class FullMoviesReaderController extends FullMovieController{
                 //if i got an exception while getting the json or i dont have json to get at all i want the random option to repeat itself
                 MainActivity mContext = (MainActivity) App.getContext();
                 View v = App.getmView();
-                mContext.random(v);
+
             }
             Toast.makeText(activity, "Give me a second", Toast.LENGTH_LONG).show();//for my own use to see if there is an error while running
         }

@@ -31,6 +31,7 @@
         android:orientation="horizontal" >
 
         <Button
+            android:fontFamily="cursive"
             android:id="@+id/btn_edit"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
@@ -41,6 +42,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:fontFamily="cursive"
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="30dp"

@@ -2,12 +2,14 @@ package com.henshoefgmail.projecttest;
 
 import android.app.Activity;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class MoviesReaderController extends MovieController {
@@ -25,7 +27,13 @@ public Activity contex;
 
     public void readAllMovies(String name) {
         HttpRequest httpRequest = new HttpRequest(this);
-        httpRequest.execute("https://api.themoviedb.org/3/search/movie?api_key=fdbafdad226138d461dcb4c9b2d663f5&query="+name+"&page=1");
+        Locale locale = Locale.getDefault();
+        String locale2=locale.toString();
+        if(locale2.equals("iw_IL")) {
+         httpRequest.execute("https://api.themoviedb.org/3/search/movie?api_key=fdbafdad226138d461dcb4c9b2d663f5&query=" + name + "&language=he");
+        }else {
+             httpRequest.execute("https://api.themoviedb.org/3/search/movie?api_key=fdbafdad226138d461dcb4c9b2d663f5&query="+name+"&page=1");
+        }
     }
 
 

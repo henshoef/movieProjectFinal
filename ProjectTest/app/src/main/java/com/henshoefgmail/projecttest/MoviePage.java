@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class MoviePage extends AppCompatActivity{
 // i use so many statics so i could use it on a static method and declare it on another class while this class is an activity
     public FullMoviesReaderController fullMoviesReaderController;
@@ -28,6 +30,7 @@ public class MoviePage extends AppCompatActivity{
     static Activity activity;
     static Context context;
 
+
     static String movieName;
     static String movieScore;
     int aSwitch;
@@ -39,6 +42,7 @@ public class MoviePage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_page);
         getSupportActionBar().hide();
+
         movieLinear=(LinearLayout) findViewById(R.id.fullMovie);
         fullMoviesReaderController = new FullMoviesReaderController(this);
         Intent i = getIntent();
@@ -75,7 +79,7 @@ public class MoviePage extends AppCompatActivity{
         description.setText(movie.getBody());
 
         if (movie.getUrl().equals("")) {
-            image.setBackgroundResource(R.drawable.nopic);
+            image.setBackgroundResource(R.drawable.image);
             image.getBackground().setAlpha(150);
         } else {
             new DownloadImageTask(activity,l,context, image, movie.getUrl()).execute();
@@ -101,20 +105,42 @@ public class MoviePage extends AppCompatActivity{
         float rating = (float) 0.5*movie.getVote_average();
         rate.setStepSize((float)0.05);
         rate.setRating(rating);
-        date.setText("Release Date: "+movie.getRelease_date());
+        Locale locale = Locale.getDefault();
+        String locale2=locale.toString();
+        if(locale2.equals("iw_IL")) {
+            date.setText("תאריך הפצה: " + movie.getRelease_date());
+        }else {
+            date.setText("Release Date: " + movie.getRelease_date());
+        }
         String money;
         if(0==movie.getBudget()){
-            money = "there are no information on this detail";
+            if(locale2.equals("iw_IL")) {
+                money = "לא נימצא תקציב לסרט זה :(";
+            }else {
+                money = "there are no information on this detail";
+            }
         }else {
             money = movie.getBudget() + "";
         }
-        budget.setText("Budget: "+money);
+        if(locale2.equals("iw_IL")) {
+            budget.setText("תקציב: " + money);
+        }else {
+            budget.setText("Budget: " + money);
+        }
         if(0!=movie.getRuntime()) {
             int hours = movie.getRuntime() / 60;
             int minutes = movie.getRuntime() % 60;
-            runtime.setText("MovieSample length: " + hours + " hours and " + minutes + " minutes");
+            if(locale2.equals("iw_IL")) {
+                runtime.setText("אורך הסרט: " + hours + " שעות ו" + minutes + " דקות");
+            }else {
+                runtime.setText("Movie length: " + hours + " hours and " + minutes + " minutes");
+            }
         }else{
-            runtime.setText("MovieSample length: there are no information on this detail");
+            if(locale2.equals("iw_IL")) {
+                runtime.setText("אורך הסרט: לא נימצא אורך על סרט זה :(");
+            }else {
+                runtime.setText("Movie length: there are no information on this detail");
+            }
         }
 
         movieName = movie.getSubject().toString();

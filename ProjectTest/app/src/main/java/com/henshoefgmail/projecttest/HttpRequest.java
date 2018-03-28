@@ -68,7 +68,6 @@ public class HttpRequest extends AsyncTask<String, Void, String> {
 //if the http is not ok i want the random to repeat itself and give me another http url
                 mContext=(MainActivity)App.getContext();
                 v = App.getmView();
-                mContext.random(v);
                 errorMessage = "a second";
                 return null;
             }
