@@ -4,19 +4,25 @@ package com.henshoefgmail.projecttest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import java.util.Locale;
 
 public class MoviePage extends AppCompatActivity{
 // i use so many statics so i could use it on a static method and declare it on another class while this class is an activity
     public FullMoviesReaderController fullMoviesReaderController;
+    public TrailerReaderController trailerReaderController;
     static LinearLayout l;
     static LinearLayout movieLinear;
     static TextView head;
@@ -27,9 +33,11 @@ public class MoviePage extends AppCompatActivity{
     static TextView date;
     static TextView budget;
     static TextView runtime;
+    static WebView trailer;
     static Activity activity;
     static Context context;
-
+    static String trUrl;
+    static Button trailBut;
 
     static String movieName;
     static String movieScore;
@@ -44,11 +52,14 @@ public class MoviePage extends AppCompatActivity{
         getSupportActionBar().hide();
 
         movieLinear=(LinearLayout) findViewById(R.id.fullMovie);
+        trailBut=(Button)findViewById(R.id.trailbut);
         fullMoviesReaderController = new FullMoviesReaderController(this);
+        trailerReaderController = new TrailerReaderController(this);
         Intent i = getIntent();
         int No =i.getIntExtra("No",0);
         aSwitch =i.getIntExtra("switch",0);
         fullMoviesReaderController.getFullMovie(No,aSwitch);
+        trailerReaderController.getTrailer(No,aSwitch);
         l = (LinearLayout) findViewById(R.id.l);
         head = (TextView) findViewById(R.id.title);
         description = (TextView) findViewById(R.id.description);
@@ -58,9 +69,10 @@ public class MoviePage extends AppCompatActivity{
         date = (TextView) findViewById(R.id.release_date);
         budget = (TextView) findViewById(R.id.budget);
         runtime = (TextView) findViewById(R.id.runtime);
+        trailer = (WebView) findViewById(R.id.trailer);
         activity = this;
         context = this;
-
+        trailer.setBackground(context.getResources().getDrawable(R.drawable.image2));
 
     }
 
@@ -146,7 +158,23 @@ public class MoviePage extends AppCompatActivity{
         movieName = movie.getSubject().toString();
         movieScore = movie.getVote_average()+"";
     }
+public  static void setTrailer(final TrailerInfo trailerUrl){
 
+      trUrl=trailerUrl.getTrailer();
+if(trUrl.equals("")){
+    trailBut.setVisibility(View.GONE);
+}
+
+
+
+
+        //trailer.setVideoURI(Uri.parse(trailerUrl.getTrailer()));
+
+        //trailer.setText(trailerUrl.getTrailer());
+}
+public void webViewClick(View v){
+    trailer.loadUrl(trUrl);
+}
     public void share(View v){
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);

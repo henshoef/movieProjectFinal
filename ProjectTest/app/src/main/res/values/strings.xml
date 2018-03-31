@@ -26,4 +26,6 @@
     <string name="toast">Movie title must entered</string>
     <string name="movie_is_list_empty">Movie list is empty</string>
     <string name="watch">Did you watch it?</string>
+    <string name="trailer">Trailer</string>
+
 </resources>

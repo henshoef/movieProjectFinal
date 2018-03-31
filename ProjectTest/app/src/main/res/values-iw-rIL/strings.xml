@@ -27,4 +27,5 @@
     <string name="toast">שם הסרט חיוני לייצירת סרט</string>
     <string name="movie_is_list_empty">רשימת הסרטים ריקה</string>
     <string name="watch">האם ראית את הסרט?</string>
+    <string name="trailer">טריילר</string>
 </resources>

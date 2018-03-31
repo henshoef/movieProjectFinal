@@ -39,6 +39,7 @@ public class InternetActivity extends AppCompatActivity {
     public void send(int i){
         String tempName = listViewMovies.getAdapter().getItem(i).toString();
         String baseImageUrl = "http://image.tmdb.org/t/p/w185";//cuz' the obtained image url is only part of the URL of the image
+        String baseYouTube = "https://www.youtube.com/watch?v=";
 
         tempMovieSamples = moviesReaderController.giveMovies();
 

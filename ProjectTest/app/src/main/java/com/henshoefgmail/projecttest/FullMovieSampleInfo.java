@@ -11,12 +11,15 @@ public class FullMovieSampleInfo extends MovieSample {
 
 
 
+
     public FullMovieSampleInfo(int id, String subject, String body, String url, int No, float vote_average, String release_date, int budget, int runtime) {
         super(id, subject, body, url, No);
         this.vote_average = vote_average;
         this.release_date = release_date;
         this.budget = budget;
         this.runtime = runtime;
+
+
     }
 
 
